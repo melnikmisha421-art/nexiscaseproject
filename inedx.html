@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="uk" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurboFix — Преміальний автомобільний техцентр у Києві</title>
+    <!-- SEO Tags -->
+    <meta name="description" content="Професійна комп'ютерна діагностика, ремонт двигунів, трансмісій та детейлінг за стандартами дилерських центрів. Офіційна гарантія, сучасне обладнання.">
+    <meta name="keywords" content="СТО Київ, автосервіс, ремонт авто, комп'ютерна діагностика, ТО автомобіля, шиномонтаж">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="TurboFix — Преміальний автомобільний техцентр">
+    <meta property="og:description" content="Професійний технічний сервіс вашого авто з гарантією до 12 місяців.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://turbofix.com.ua">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- Favicon via Data-URI (Modern Wrench SVG) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23f97316%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z%22/></svg>">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            950: '#090a0f',
+                            900: '#0e1017',
+                            800: '#151821',
+                            700: '#1f2430',
+                        },
+                        accent: {
+                            DEFAULT: '#f97316',
+                            hover: '#ea580c',
+                            light: '#fb923c'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Form color scheme */
+        input, select, textarea {
+            color-scheme: dark;
+        }
+
+        /* Custom scrollbar & glassmorphism effects */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #090a0f; }
+        ::-webkit-scrollbar-thumb { background: #1f2430; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
+
+        .glass-panel {
+            background: rgba(21, 24, 33, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(31, 36, 48, 0.6) 0%, rgba(15, 17, 23, 0.8) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glow-accent {
+            box-shadow: 0 0 40px -10px rgba(249, 115, 22, 0.3);
+        }
+
+        /* Intersection Observer Fade-in Animation Classes */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Prefers Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .reveal-section {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-dark-950 text-slate-100 font-sans antialiased selection:bg-accent selection:text-white overflow-x-hidden">
+
+    <!-- STICKY NAVIGATION -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-panel border-b border-white/5 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-amber-600 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-accent/20 group-hover:scale-105 transition-transform">
+                    TF
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-tight text-white">TURBO<span class="text-accent">FIX</span></span>
+                    <span class="text-[10px] tracking-widest text-slate-400 uppercase font-semibold">Service Center</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#services" class="hover:text-accent transition-colors">Послуги</a>
+                <a href="#why-us" class="hover:text-accent transition-colors">Переваги</a>
+                <a href="#process" class="hover:text-accent transition-colors">Як ми працюємо</a>
+                <a href="#pricing" class="hover:text-accent transition-colors">Прайс</a>
+                <a href="#reviews" class="hover:text-accent transition-colors">Відгуки</a>
+                <a href="#contacts" class="hover:text-accent transition-colors">Контакти</a>
+            </nav>
+
+            <!-- CTA & Contact -->
+            <div class="hidden sm:flex items-center gap-6">
+                <a href="tel:+380443332211" class="flex items-center gap-2 text-sm font-semibold text-slate-200 hover:text-accent transition-colors">
+                    <i data-lucide="phone-call" class="w-4 h-4 text-accent"></i>
+                    <span>+38 (044) 333-22-11</span>
+                </a>
+                <a href="#booking" class="relative group overflow-hidden rounded-xl p-[1px] focus:outline-none">
+                    <span class="absolute inset-0 bg-gradient-to-r from-accent to-amber-500 rounded-xl transition-all duration-300 group-hover:opacity-90"></span>
+                    <span class="relative px-5 py-2.5 rounded-xl bg-dark-900 text-white font-semibold text-sm flex items-center gap-2 transition-all duration-300 group-hover:bg-transparent">
+                        Записатися
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-slate-300 hover:text-white focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden glass-panel border-b border-white/10 px-6 py-6 space-y-4 absolute top-full left-0 right-0">
+            <a href="#services" class="block text-base font-medium text-slate-200 hover:text-accent">Послуги</a>
+            <a href="#why-us" class="block text-base font-medium text-slate-200 hover:text-accent">Переваги</a>
+            <a href="#process" class="block text-base font-medium text-slate-200 hover:text-accent">Як ми працюємо</a>
+            <a href="#pricing" class="block text-base font-medium text-slate-200 hover:text-accent">Прайс</a>
+            <a href="#reviews" class="block text-base font-medium text-slate-200 hover:text-accent">Відгуки</a>
+            <a href="#contacts" class="block text-base font-medium text-slate-200 hover:text-accent">Контакти</a>
+            <div class="pt-4 border-t border-white/10 flex flex-col gap-4">
+                <a href="tel:+380443332211" class="flex items-center gap-2 text-base font-semibold text-accent">
+                    <i data-lucide="phone-call" class="w-5 h-5"></i>
+                    <span>+38 (044) 333-22-11</span>
+                </a>
+                <a href="#booking" class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-center shadow-lg shadow-accent/20">
+                    Записатися на сервіс
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+            <!-- Parallax Background Image -->
+            <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                <img id="hero-parallax-bg" src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=2000" alt="Car service background" class="w-full h-[120%] object-cover opacity-20 transform -translate-y-10 transition-transform duration-100 ease-out">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/80 to-transparent"></div>
+                <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[140px] pointer-events-none"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                        <!-- Badge -->
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-accent/30 text-accent text-xs font-semibold tracking-wide uppercase">
+                            <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                            Нове покоління автосервісу в Києві
+                        </div>
+
+                        <!-- Title -->
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+                            Еталонний догляд та <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent via-amber-500 to-orange-400">технічний сервіс</span> вашого авто
+                        </h1>
+
+                        <!-- Subtitle -->
+                        <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            Професійна комп'ютерна діагностика, високоточний ремонт двигунів, трансмісій та детейлінг за стандартами дилерських центрів.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#booking" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-accent to-amber-600 text-white font-bold text-base shadow-xl shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+                                <i data-lucide="wrench" class="w-5 h-5"></i>
+                                Записатися на сервіс
+                            </a>
+                            <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-panel text-white font-semibold text-base hover:bg-dark-700/60 transition-all flex items-center justify-center gap-2 border border-white/10">
+                                <span>Дивитися послуги</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+
+                        <!-- Counters Grid -->
+                        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/10" id="counters-container">
+                            <div>
+                                <div class="text-3xl sm:text-4xl font-extrabold text-white"><span class="counter" data-target="12">0</span>+</div>
+                                <div class="text-xs sm:text-sm text-slate-400 mt-1">Років досвіду</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl sm:text-4xl font-extrabold text-accent"><span class="counter" data-target="15000">0</span>+</div>
+                                <div class="text-xs sm:text-sm text-slate-400 mt-1">Відремонтованих авто</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl sm:text-4xl font-extrabold text-white"><span class="counter" data-target="99.4" data-decimal="true">0</span>%</div>
+                                <div class="text-xs sm:text-sm text-slate-400 mt-1">Задоволених клієнтів</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Card -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative rounded-3xl overflow-hidden glass-card p-4 glow-accent border border-white/10 group">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-60 z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&q=80&w=1000" alt="Modern Workshop" class="w-full h-[420px] object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700">
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute bottom-8 left-8 right-8 z-20 glass-panel p-4 rounded-2xl flex items-center gap-4 border border-white/10">
+                                <div class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center text-accent">
+                                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <div class="text-white font-bold text-sm">Офіційна гарантія</div>
+                                    <div class="text-xs text-slate-400">До 12 місяців на всі види ремонтних робіт</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-24 relative bg-dark-900/50 reveal-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <span class="text-accent text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-accent/10">Наші можливості</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Повний цикл послуг для вашого автомобіля</h2>
+                    <p class="text-slate-400 text-base sm:text-lg">Використовуємо дилерське обладнання та сертифіковані витратні матеріали.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Service Card 1 -->
+                    <div class="glass-card rounded-3xl p-8 hover:border-accent/50 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-lg shadow-accent/5">
+                                <i data-lucide="cpu" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Комп'ютерна діагностика</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Зчитування помилок, сканування електронних блоків управління, адаптація датчиків та оновлення ПЗ.</p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-sm">
+                            <span class="text-slate-300 font-semibold">від 400 грн</span>
+                            <a href="#booking" class="text-accent font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Замовити <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="glass-card rounded-3xl p-8 hover:border-accent/50 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-lg shadow-accent/5">
+                                <i data-lucide="gauge" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Технічне обслуговування (ТО)</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Заміна масла в двигуні та КПП, масляних, повітряних, салонних фільтрів та комплексний огляд рідин.</p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-sm">
+                            <span class="text-slate-300 font-semibold">від 600 грн</span>
+                            <a href="#booking" class="text-accent font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Замовити <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="glass-card rounded-3xl p-8 hover:border-accent/50 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-lg shadow-accent/5">
+                                <i data-lucide="disc" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Шиномонтаж та балансування</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Сезонна заміна шин на професійному обладнанні Hofmann, точне балансування та ремонт порізів.</p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-sm">
+                            <span class="text-slate-300 font-semibold">від 800 грн</span>
+                            <a href="#booking" class="text-accent font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Замовити <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 4 -->
+                    <div class="glass-card rounded-3xl p-8 hover:border-accent/50 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-lg shadow-accent/5">
+                                <i data-lucide="hammer" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Кузовний ремонт та фарбування</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Вирівнювання геометрії на стапелі, локальне та повне фарбування у професійній камері Spies Hecker.</p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-sm">
+                            <span class="text-slate-300 font-semibold">за результатами оцінки</span>
+                            <a href="#booking" class="text-accent font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Замовити <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 5 -->
+                    <div class="glass-card rounded-3xl p-8 hover:border-accent/50 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-lg shadow-accent/5">
+                                <i data-lucide="zap" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Автоелектрика та стартери</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Ремонт генераторів, стартерів, проводки, встановлення сигналізацій, парктроників та камер заднього виду.</p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-sm">
+                            <span class="text-slate-300 font-semibold">від 500 грн</span>
+                            <a href="#booking" class="text-accent font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Замовити <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 6 -->
+                    <div class="glass-card rounded-3xl p-8 hover:border-accent/50 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-lg shadow-accent/5">
+                                <i data-lucide="snowflake" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Обслуговування кондиціонерів</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Заправка фреоном R134a/R1234yf, антибактеріальна чистка системи вентиляції, пошук витоків азотом.</p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-sm">
+                            <span class="text-slate-300 font-semibold">від 700 грн</span>
+                            <a href="#booking" class="text-accent font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Замовити <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY US SECTION -->
+        <section id="why-us" class="py-24 relative overflow-hidden reveal-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold tracking-widest uppercase">
+                            Чому обирають нас
+                        </div>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                            Якість дилерського рівня без переплат
+                        </h2>
+                        <p class="text-slate-400 text-base sm:text-lg">
+                            Ми об'єднали досвідчених інженерів, передові технології та повну прозорість розрахунків. Жодних прихованих платежів та зайвих ремонтів.
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                                    <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-white mb-1">Безкомпромісна гарантія</h4>
+                                    <p class="text-slate-400 text-sm">Надаємо офіційну гарантію до 12 місяців на всі види робіт та встановлені автозапчастини.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                                    <i data-lucide="package" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-white mb-1">Оригінальні запчастини та аналоги</h4>
+                                    <p class="text-slate-400 text-sm">Власний склад оригінальних деталей та перевірених якісних аналогів у наявності та на замовлення.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                                    <i data-lucide="search" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-white mb-1">Безкоштовна первинна діагностика</h4>
+                                    <p class="text-slate-400 text-sm">При здійсненні ремонту на нашій станції ви не сплачуєте за базову комп'ютерну перевірку.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-accent/20 to-amber-500/20 rounded-3xl blur-2xl"></div>
+                        <div class="relative glass-card rounded-3xl p-8 border border-white/10 space-y-6">
+                            <div class="flex items-center justify-between pb-6 border-b border-white/10">
+                                <div>
+                                    <span class="text-xs text-slate-400 uppercase font-semibold">Статус станції</span>
+                                    <h4 class="text-xl font-bold text-white">Працюємо в штатному режимі</h4>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold">Відкрито</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-400">Вільних підйомників</span>
+                                    <span class="text-white font-bold">3 з 8</span>
+                                </div>
+                                <div class="w-full bg-dark-950 rounded-full h-2 overflow-hidden">
+                                    <div class="bg-accent h-full rounded-full" style="width: 62%;"></div>
+                                </div>
+                                <div class="flex items-center justify-between text-sm pt-2">
+                                    <span class="text-slate-400">Середній час обслуговування</span>
+                                    <span class="text-white font-bold">45 хв</span>
+                                </div>
+                            </div>
+                            <a href="#booking" class="block w-full py-4 rounded-xl bg-gradient-to-r from-accent to-amber-600 text-white font-bold text-center shadow-lg shadow-accent/20 hover:scale-[1.01] transition-transform">
+                                Забронювати час
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW WE WORK -->
+        <section id="process" class="py-24 bg-dark-900/50 reveal-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <span class="text-accent text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-accent/10">Процес</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Як ми працюємо з вашим авто</h2>
+                    <p class="text-slate-400 text-base sm:text-lg">Прозорий та контрольований кожен крок від заявки до видачі.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Step 1 -->
+                    <div class="glass-card rounded-3xl p-8 relative group">
+                        <span class="text-6xl font-black text-white/5 absolute top-4 right-6 group-hover:text-accent/10 transition-colors">01</span>
+                        <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 font-bold text-lg">
+                            1
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Заявка чи дзвінок</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Залишаєте контакти на сайті або телефонуєте нам для попереднього узгодження проблеми.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="glass-card rounded-3xl p-8 relative group">
+                        <span class="text-6xl font-black text-white/5 absolute top-4 right-6 group-hover:text-accent/10 transition-colors">02</span>
+                        <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 font-bold text-lg">
+                            2
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Діагностика</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Проводимо детальну комп'ютерну та механічну перевірку, узгоджуємо кошторис.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="glass-card rounded-3xl p-8 relative group">
+                        <span class="text-6xl font-black text-white/5 absolute top-4 right-6 group-hover:text-accent/10 transition-colors">03</span>
+                        <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 font-bold text-lg">
+                            3
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Ремонт</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Виконуємо необхідні роботи із залученням вузькопрофільних майстрів та оригінальних деталей.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="glass-card rounded-3xl p-8 relative group">
+                        <span class="text-6xl font-black text-white/5 absolute top-4 right-6 group-hover:text-accent/10 transition-colors">04</span>
+                        <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-6 font-bold text-lg">
+                            4
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Видача авто</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Тест-драйв, оформлення гарантії, видача актів виконаних робіт та рекомендацій.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING SECTION -->
+        <section id="pricing" class="py-24 relative reveal-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <span class="text-accent text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-accent/10">Прайс-лист</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Популярні послуги та ціни</h2>
+                    <p class="text-slate-400 text-base sm:text-lg">Фіксована вартість робіт без прихованих платежів.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto glass-card rounded-3xl overflow-hidden border border-white/10">
+                    <div class="divide-y divide-white/5">
+                        <div class="p-6 sm:px-8 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+                            <div>
+                                <h4 class="text-white font-bold text-base sm:text-lg">Комп'ютерна діагностика систем</h4>
+                                <p class="text-xs sm:text-sm text-slate-400">Повний звіт та скидання помилок</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-accent font-extrabold text-lg sm:text-xl">від 400 грн</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:px-8 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+                            <div>
+                                <h4 class="text-white font-bold text-base sm:text-lg">Заміна масла в двигуні + фільтр</h4>
+                                <p class="text-xs sm:text-sm text-slate-400">Без урахування вартості масла та фільтра</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-accent font-extrabold text-lg sm:text-xl">від 600 грн</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:px-8 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+                            <div>
+                                <h4 class="text-white font-bold text-base sm:text-lg">Комплексний шиномонтаж (R16-R17)</h4>
+                                <p class="text-xs sm:text-sm text-slate-400">Зняття, розборка, балансування, зборка</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-accent font-extrabold text-lg sm:text-xl">від 950 грн</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:px-8 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+                            <div>
+                                <h4 class="text-white font-bold text-base sm:text-lg">Заправка та діагностика кондиціонера</h4>
+                                <p class="text-xs sm:text-sm text-slate-400">Фреон та мастило включено у вартість</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-accent font-extrabold text-lg sm:text-xl">від 1 200 грн</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:px-8 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+                            <div>
+                                <h4 class="text-white font-bold text-base sm:text-lg">Заміна гальмівних колодок (вісь)</h4>
+                                <p class="text-xs sm:text-sm text-slate-400">Передні або задні колеса</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-accent font-extrabold text-lg sm:text-xl">від 750 грн</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-dark-950/50 text-center border-t border-white/5">
+                        <a href="#booking" class="inline-flex items-center gap-2 text-accent font-bold hover:underline">
+                            Повний прайс та консультація майстра <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="py-24 bg-dark-900/50 reveal-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <span class="text-accent text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-accent/10">Відгуки клієнтів</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Що про нас кажуть водії</h2>
+                    <p class="text-slate-400 text-base sm:text-lg">Реальні відгуки автовласників з Google Maps та нашої бази.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Review 1 -->
+                    <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-1 text-amber-400">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                «Обслуговую свій BMW тут вже понад рік. Дуже професійний підхід, все чітко за часом, ніяких нав'язувань непотрібних послуг. Рекомендую!»
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-white/5">
+                            <div class="w-10 h-10 rounded-full bg-accent/20 text-accent font-bold flex items-center justify-center">
+                                ОМ
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold text-sm">Олександр Мельник</h5>
+                                <span class="text-xs text-slate-400">BMW 5 Series</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-1 text-amber-400">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                «Швидко знайшли причину плаваючих обертів, яку не могли діагностувати на двох інших СТО. Ціни адекватні, майстри вічливі.»
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-white/5">
+                            <div class="w-10 h-10 rounded-full bg-accent/20 text-accent font-bold flex items-center justify-center">
+                                ДК
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold text-sm">Дмитро Ковальчук</h5>
+                                <span class="text-xs text-slate-400">Audi A6 C7</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-1 text-amber-400">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                «Робила повне ТО та заміну гальм. Сподобалася чиста зона очікування, є кава та wi-fi. Машину видали вчасно вимитою.»
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-white/5">
+                            <div class="w-10 h-10 rounded-full bg-accent/20 text-accent font-bold flex items-center justify-center">
+                                ІШ
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold text-sm">Ірина Шевченко</h5>
+                                <span class="text-xs text-slate-400">Jeep Compass</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOOKING & CONTACTS SECTION -->
+        <section id="booking" class="py-24 relative overflow-hidden reveal-section">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-900 to-dark-950"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Form Column -->
+                    <div class="lg:col-span-7 glass-card rounded-3xl p-8 sm:p-12 border border-white/10 shadow-2xl">
+                        <div class="space-y-3 mb-8">
+                            <span class="text-accent text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-accent/10">Онлайн-запис</span>
+                            <h2 class="text-3xl font-extrabold text-white">Запишіться на сервіс</h2>
+                            <p class="text-slate-400 text-sm">Заповніть форму, і наш менеджер зв'яжеться з вами протягом 5 хвилин для підтвердження часу.</p>
+                        </div>
+
+                        <form id="booking-form" class="space-y-6" onsubmit="event.preventDefault(); alert('Дякуємо! Ваша заявка успішно надіслана. Менеджер звʼяжеться з вами.');">
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-slate-300 uppercase">Ваше ім'я</label>
+                                    <input type="text" required placeholder="Михайло" class="w-full px-4 py-3.5 rounded-xl bg-dark-950 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-accent transition-colors text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-slate-300 uppercase">Номер телефону</label>
+                                    <input type="tel" required placeholder="+38 (063) 000-00-00" class="w-full px-4 py-3.5 rounded-xl bg-dark-950 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-accent transition-colors text-sm">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-slate-300 uppercase">Марка та модель авто</label>
+                                    <input type="text" required placeholder="Audi A6 / Jeep Compass" class="w-full px-4 py-3.5 rounded-xl bg-dark-950 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-accent transition-colors text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-slate-300 uppercase">Оберіть послугу</label>
+                                    <select class="w-full px-4 py-3.5 rounded-xl bg-dark-950 border border-white/10 text-white focus:outline-none focus:border-accent transition-colors text-sm">
+                                        <option>Комп'ютерна діагностика</option>
+                                        <option>Технічне обслуговування (ТО)</option>
+                                        <option>Шиномонтаж та балансування</option>
+                                        <option>Кузовний ремонт</option>
+                                        <option>Автоелектрика</option>
+                                        <option>Обслуговування кондиціонерів</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-slate-300 uppercase">Бажана дата та час</label>
+                                <input type="datetime-local" required class="w-full px-4 py-3.5 rounded-xl bg-dark-950 border border-white/10 text-white focus:outline-none focus:border-accent transition-colors text-sm">
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-accent to-amber-600 text-white font-bold text-base shadow-xl shadow-accent/25 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                Підтвердити запис
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contacts Info Column -->
+                    <div id="contacts" class="lg:col-span-5 space-y-8">
+                        <div class="space-y-3">
+                            <span class="text-accent text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-accent/10">Контакти</span>
+                            <h2 class="text-3xl font-extrabold text-white">Зв'яжіться з нами</h2>
+                            <p class="text-slate-400 text-sm">Завітайте до нашого технічного центру або зв'яжіться будь-яким зручним способом.</p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-bold mb-1">Адреса техцентру</h5>
+                                    <p class="text-slate-400 text-sm">м. Київ, вул. Індустріальна, 24А</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                                    <i data-lucide="phone" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-bold mb-1">Телефон</h5>
+                                    <p class="text-slate-400 text-sm">+38 (044) 333-22-11<br>+38 (063) 333-22-11</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                                    <i data-lucide="clock" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-bold mb-1">Режим роботи</h5>
+                                    <p class="text-slate-400 text-sm">Пн–Сб: 08:00 – 20:00<br>Нд: Вихідний</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Google Maps Embed Placeholder -->
+                        <div class="rounded-2xl overflow-hidden glass-panel border border-white/10 h-48 relative">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.598687258957!2d30.4357!3d50.4491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDI2JzI2LjgiTiAzMMKwMjYnMDguNiJF!5e0!3m2!1suk!2sua!4v1620000000000!5m2!1suk!2sua" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; filter: invert(90%) hue-rotate(180deg);" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+
+                        <!-- Socials -->
+                        <div class="pt-2 flex items-center gap-4">
+                            <a href="#" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-accent hover:border-accent transition-colors">
+                                <i data-lucide="instagram" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-accent hover:border-accent transition-colors">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-accent hover:border-accent transition-colors">
+                                <i data-lucide="facebook" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 bg-dark-950 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-amber-600 flex items-center justify-center text-white font-extrabold text-sm">
+                    TF
+                </div>
+                <span class="text-lg font-extrabold text-white">TURBOFIX</span>
+            </div>
+
+            <div class="text-sm text-slate-500">
+                © 2026 TurboFix Service Center. Всі права захищені.
+            </div>
+
+            <div class="text-sm text-slate-400 font-medium">
+                Сделано в <span class="text-accent font-bold">Nexis</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons & Enhanced JavaScript Interactions -->
+    <script>
+        lucide.createIcons();
+
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect (shrinking height & background opacity)
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-dark-950/90', 'h-16');
+                navbar.classList.remove('h-20');
+            } else {
+                navbar.classList.remove('bg-dark-950/90', 'h-16');
+                navbar.classList.add('h-20');
+            }
+        });
+
+        // Light Parallax effect on Hero Background
+        if (!prefersReducedMotion) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                const heroBg = document.getElementById('hero-parallax-bg');
+                if (heroBg && scrolled < window.innerHeight) {
+                    heroBg.style.transform = `translateY(${scrolled * 0.25}px)`;
+                }
+            });
+        }
+
+        // Intersection Observer for Sections Reveal
+        const revealSections = document.querySelectorAll('.reveal-section');
+        const sectionObserverOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, sectionObserverOptions);
+
+        revealSections.forEach(section => {
+            if (prefersReducedMotion) {
+                section.classList.add('active');
+            } else {
+                sectionObserver.observe(section);
+            }
+        });
+
+        // Animated Counters on Viewport Entry
+        const counters = document.querySelectorAll('.counter');
+        const countersContainer = document.getElementById('counters-container');
+        let countersStarted = false;
+
+        function startCounters() {
+            if (countersStarted) return;
+            countersStarted = true;
+
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const isDecimal = counter.getAttribute('data-decimal') === 'true';
+                const duration = 2000; // 2 seconds
+                const startTime = performance.now();
+
+                function updateCounter(currentTime) {
+                    const elapsedTime = currentTime - startTime;
+                    const progress = Math.min(elapsedTime / duration, 1);
+                    // Ease out expo
+                    const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                    
+                    const currentVal = target * easeProgress;
+
+                    if (isDecimal) {
+                        counter.textContent = currentVal.toFixed(1);
+                    } else {
+                        counter.textContent = Math.floor(currentVal).toLocaleString();
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = isDecimal ? target.toFixed(1) : target.toLocaleString();
+                    }
+                }
+
+                requestAnimationFrame(updateCounter);
+            });
+        }
+
+        if (countersContainer) {
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (prefersReducedMotion) {
+                            counters.forEach(counter => {
+                                const target = parseFloat(counter.getAttribute('data-target'));
+                                counter.textContent = counter.getAttribute('data-decimal') === 'true' ? target.toFixed(1) : target.toLocaleString();
+                            });
+                        } else {
+                            startCounters();
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counterObserver.observe(countersContainer);
+        }
+    </script>
+</body>
+</html>
